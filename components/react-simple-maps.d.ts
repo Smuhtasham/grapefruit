@@ -1,5 +1,3 @@
-// src/react-simple-maps.d.ts
-
 declare module 'react-simple-maps' {
     import { ComponentType } from 'react';
   

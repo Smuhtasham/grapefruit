@@ -6,7 +6,7 @@ const LoadingVariations = () => {
     <div className="flex h-[100vh] items-center ">
       <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
         <div className="flex flex-col gap-8 items-center justify-center min-h-screen">
-          <h1 className="text-6xl font-semibold text-purple-500 mb-6">
+          <h1 className="text-6xl font-semibold text-[#976CFB] mb-6">
             Loading Variations
           </h1>
           <div className="relative">

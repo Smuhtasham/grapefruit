@@ -7,15 +7,23 @@ import {
   Marker,
 } from "react-simple-maps";
 
-// World map TopoJSON (a simplified, smaller map file)
+// Updated GeoJSON URL
 const geoUrl =
-  "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
+  "https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson";
 
 // Define the type for data points
 interface DataPoint {
   name: string;
   coordinates: [number, number]; // Longitude and Latitude
   markerOffset: number;
+}
+
+// Define the type for Geographies props
+interface GeographiesProps {
+  geographies: {
+    id: string; // Unique identifier for each geography
+    properties: any; // You can specify more detailed properties if you need
+  }[];
 }
 
 const PopulationFrequencyMap: React.FC = () => {
@@ -42,15 +50,13 @@ const PopulationFrequencyMap: React.FC = () => {
           <div className="w-full max-w-3xl">
             <ComposableMap projection="geoMercator" width={800} height={400}>
               <Geographies geography={geoUrl}>
-                {(
-                  { geographies }: { geographies: any[] } // Specify the type for geographies
-                ) =>
+                {({ geographies }: { geographies: GeographiesProps["geographies"] }) =>
                   geographies.map((geo) => (
                     <Geography
-                      key={geo.rsmKey}
+                      key={geo.id} // Use geo.id for the key
                       geography={geo}
-                      fill="#EAEAEC"
-                      stroke="#D6D6DA"
+                      fill="#fff" // Light green color
+                      stroke="#000"
                     />
                   ))
                 }

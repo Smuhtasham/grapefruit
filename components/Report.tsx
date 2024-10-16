@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const Report: React.FC = () => {
@@ -8,7 +9,7 @@ const Report: React.FC = () => {
   // Dummy data for the report
   const dummyData = {
     proteinImageUrl: "https://via.placeholder.com/150", // Placeholder for the protein image
-    drugs: ["Drug A", "Drug B", "Drug C"], // Example drugs
+    drugs: ["Drug 1", "Drug 2", "Drug 3", "Drug 4"], // Example drugs
     goFunctions: [
       "Cellular component",
       "Biological process",
@@ -45,8 +46,8 @@ const Report: React.FC = () => {
   return (
     <>
       <div className="flex h-[100vh] items-center ">
-        <div className="flex flex-col gap-8  w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-[#976CFB]">
-          <div className="flex flex-col  gap-2">
+        <div className="flex flex-col w-[80%] mx-auto rounded-xl h-[90vh] overflow-y-auto border-4 border-[#976CFB]">
+          <div className="flex flex-col">
             <h1 className="text-4xl flex mt-6 justify-center font-semibold text-red-500 mb-6">
               Report on XYZ Protein
             </h1>
@@ -64,17 +65,18 @@ const Report: React.FC = () => {
             <div className="flex justify-evenly">
               <div className="flex flex-col">
                 <div className="mb-4">
-                  <img
-                    src={reportData.proteinImageUrl}
+                  <Image
+                    src={"/grape.png"}
+                    width={100}
+                    height={100}
                     alt="Protein Structure"
-                    className="w-48"
                   />
                 </div>
                 <div>
-                  <h3 className="text-xl mb-2">Any FDA Drugs?</h3>
-                  <div className="flex flex-wrap mb-4">
+                  <h3 className="text-base text-center mb-2">Any FDA Drugs?</h3>
+                  <div className="grid grid-cols-2">
                     {reportData.drugs.map((drug: string, index: number) => (
-                      <div key={index} className="bg-pink-200 p-2 m-1 rounded">
+                      <div key={index} className="bg-[#fc888c] font-semibold rounded-3xl  text-white px-6 py-2 m-1">
                         {drug}
                       </div>
                     ))}
