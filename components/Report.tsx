@@ -1,10 +1,22 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
 const Report: React.FC = () => {
   const [reportData, setReportData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  const data = [
+    { name: "Category 1", value1: 3000, value2: 2000, value3: 1500 },
+  ];
 
   // Dummy data for the report
   const dummyData = {
@@ -53,9 +65,9 @@ const Report: React.FC = () => {
             </h1>
 
             <div className="flex justify-center mb-4">
-              <span className="bg-blue-300 p-2 w-[10%]">East Asia</span>
-              <span className="bg-teal-300 p-2 w-[10%] ">Amish</span>
-              <span className="bg-yellow-300 p-2 w-[10%]">Yoruba</span>
+              <span className="bg-[#4287f5] p-2 w-[10%]">East Asia</span>
+              <span className="bg-[#0095a6] p-2 w-[10%] ">Amish</span>
+              <span className="bg-[#efff40] p-2 w-[10%]">Yoruba</span>
             </div>
 
             <h2 className="text-2xl flex justify-center font-semibold text-purple-600">
@@ -76,14 +88,17 @@ const Report: React.FC = () => {
                   <h3 className="text-base text-center mb-2">Any FDA Drugs?</h3>
                   <div className="grid grid-cols-2">
                     {reportData.drugs.map((drug: string, index: number) => (
-                      <div key={index} className="bg-[#fc888c] font-semibold rounded-3xl  text-white px-6 py-2 m-1">
+                      <div
+                        key={index}
+                        className="bg-[#fc888c] font-semibold rounded-3xl  text-white px-6 py-2 m-1"
+                      >
                         {drug}
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <div>
+              <div className="flex flex-col justify-center items-center">
                 <h3 className="text-xl mb-2">GO Functions Tree</h3>
                 <div className="border p-4 mb-4">
                   {reportData.goFunctions.map((func: string, index: number) => (
@@ -92,21 +107,48 @@ const Report: React.FC = () => {
                 </div>
 
                 <h3 className="text-xl mb-2">Graph Representation</h3>
-                <div className="flex">
-                  {reportData.graphData.map(
-                    (item: { label: string; value: number }, index: number) => (
-                      <div
-                        key={index}
-                        style={{ width: "50px", margin: "0 10px" }}
-                      >
-                        <div
-                          className="bg-red-300"
-                          style={{ height: `${item.value}px` }}
-                        />
-                        <p className="text-center">{item.label}</p>
-                      </div>
-                    )
-                  )}
+                <div className="w-[380px] h-[28vh] ">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      data={data}
+                      margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                      barGap={-30} // Negative value to overlap bars horizontally
+                      barCategoryGap="0%" // No gap between categories
+                    >
+                      <CartesianGrid />
+                      <XAxis
+                        dataKey="name"
+                        axisLine={false}
+                        tickLine={false}
+                        tick={false}
+                      />
+                      <YAxis axisLine={false} tickLine={false} tick={false} />
+
+                      {/* First Bar */}
+                      <Bar
+                        dataKey="value1"
+                        fill="#fc888c"
+                        radius={[50, 50, 0, 0]} // Rounded corners
+                        barSize={60} // Bar width
+                      />
+
+                      {/* Second Bar */}
+                      <Bar
+                        dataKey="value2"
+                        fill="#facc9d"
+                        radius={[50, 50, 0, 0]} // Rounded corners
+                        barSize={100} // Bar width
+                      />
+
+                      {/* Third Bar */}
+                      <Bar
+                        dataKey="value3"
+                        fill="#b5d6a7"
+                        radius={[50, 50, 0, 0]} // Rounded corners
+                        barSize={140} // Bar width
+                      />
+                    </BarChart>
+                  </ResponsiveContainer>
                 </div>
               </div>
             </div>
