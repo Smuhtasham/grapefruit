@@ -18,6 +18,10 @@ interface DataPoint {
   markerOffset: number;
 }
 
+interface PropsType {
+  onNext: () => void; // Define the type of the onNext prop
+}
+
 // Define the type for Geographies props
 interface GeographiesProps {
   geographies: {
@@ -26,7 +30,7 @@ interface GeographiesProps {
   }[];
 }
 
-const PopulationFrequencyMap: React.FC = () => {
+const PopulationFrequencyMap: React.FC<PropsType> = ({onNext}) => {
   // Data points representing some cities and their population frequency (or whatever metric)
   const data: DataPoint[] = [
     {
@@ -39,7 +43,7 @@ const PopulationFrequencyMap: React.FC = () => {
   ];
 
   return (
-    <div className="flex h-[100vh] items-center ">
+    <div className="flex h-[100vh] w-[80%] items-center ">
       <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
         <div className="flex flex-col py-6">
           <h1 className="text-4xl font-semibold text-purple-500 mb-6">
@@ -78,7 +82,7 @@ const PopulationFrequencyMap: React.FC = () => {
             </ComposableMap>
           </div>
 
-          <button className="mt-6 px-8 py-3 bg-yellow-400 text-white font-semibold text-xl rounded-full hover:bg-yellow-500 transition duration-200">
+          <button onClick={onNext} className="mt-6 px-8 py-3 bg-yellow-400 text-white font-semibold text-xl rounded-full hover:bg-yellow-500 transition duration-200">
             Generate a Report
           </button>
         </div>

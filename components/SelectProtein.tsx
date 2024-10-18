@@ -2,16 +2,23 @@
 import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
-const SelectProtein = () => {
+interface PropsType {
+  onNext: () => void; // Define the type of the onNext prop
+  onSelectProtein: (protein: string) => void; // New prop to handle protein selection
+}
+
+const SelectProtein: React.FC<PropsType> = ({ onNext, onSelectProtein }) => {
   const [selectedProtein, setSelectedProtein] = useState("");
   const proteins = ["Protein A", "Protein B", "Protein C", "Protein D"]; // Example data
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedProtein(event.target.value);
+    const protein = event.target.value;
+    setSelectedProtein(protein);
+    onSelectProtein(protein); // Call the function to handle protein selection
   };
 
   return (
-    <div className="flex h-[100vh] items-center ">
+    <div className="flex h-[100vh] w-[80%] items-center ">
       <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
         <div className="flex flex-col justify-center gap-8 items-center h-screen">
           {/* Title */}
@@ -21,11 +28,11 @@ const SelectProtein = () => {
 
           {/* Select Box */}
           <div className="flex gap-2">
-          <div className="relative w-[300px]">
+            <div className="relative w-[300px]">
               <select
                 value={selectedProtein}
-                onChange={handleSelect}
-                className="w-full py-3 px-4 border-2 text-center border-[#976CFB] text-[#976CFB] rounded-sm appearance-none text-xl focus:outline-none" // No outline on focus
+                onChange={handleSelect} // Update selected protein and call onSelectProtein
+                className="w-full py-3 px-4 border-2 text-center border-[#976CFB] text-[#976CFB] rounded-sm appearance-none text-xl focus:outline-none"
               >
                 <option value="">[ ]</option> {/* Changed ( ) to { } */}
                 {proteins.map((protein) => (
@@ -38,10 +45,10 @@ const SelectProtein = () => {
             <div className="flex items-center pointer-events-none">
               <IoMdArrowDropdown style={{ color: "red", fontSize: "20px" }} />
             </div>
-            </div>
+          </div>
 
           {/* Select Button */}
-          <button className="bg-[#FFCD6A] text-white font-semibold px-4 mt-6 rounded-full text-2xl">
+          <button onClick={onNext} className="bg-[#FFCD6A] text-white font-semibold px-4 mt-6 rounded-full text-2xl">
             Select
           </button>
         </div>
