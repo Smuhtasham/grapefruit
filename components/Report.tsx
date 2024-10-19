@@ -106,7 +106,7 @@ const Report: React.FC = () => {
                   ))}
                 </div>
 
-                <h3 className="text-xl mb-2">Graph Representation</h3>
+                <h3 className="text-xl">Graph Representation</h3>
                 <div className="w-[380px] h-[28vh] ">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
