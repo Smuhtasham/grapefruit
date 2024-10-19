@@ -1,88 +1,76 @@
-"use client";
-import React from "react";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-} from "react-simple-maps";
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import L, { DivIcon } from 'leaflet';
 
-// Updated GeoJSON URL
-const geoUrl =
-  "https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/master/countries.geojson";
+// Define a custom dot icon for the markers
+const dotIcon: DivIcon = L.divIcon({
+  className: 'custom-dot', // Custom class for styling the dot
+  html: '<div class="dot"></div>', // HTML content for the dot
+  iconSize: [12, 12], // Size of the dot
+  iconAnchor: [6, 6], // Center the dot
+  popupAnchor: [0, -6], // Adjust popup position
+});
 
-// Define the type for data points
 interface DataPoint {
   name: string;
   coordinates: [number, number]; // Longitude and Latitude
-  markerOffset: number;
 }
 
 interface PropsType {
-  onNext: () => void; // Define the type of the onNext prop
+  onNext: () => void;
 }
 
-// Define the type for Geographies props
-interface GeographiesProps {
-  geographies: {
-    id: string; // Unique identifier for each geography
-    properties: any; // You can specify more detailed properties if you need
-  }[];
-}
-
-const PopulationFrequencyMap: React.FC<PropsType> = ({onNext}) => {
-  // Data points representing some cities and their population frequency (or whatever metric)
+const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
   const data: DataPoint[] = [
-    {
-      name: "Los Angeles",
-      coordinates: [-118.2437, 34.0522],
-      markerOffset: 15,
-    },
-    { name: "London", coordinates: [-0.1278, 51.5074], markerOffset: 15 },
-    { name: "Tokyo", coordinates: [139.6503, 35.6762], markerOffset: 15 },
+    { name: 'Los Angeles', coordinates: [34.0522, -118.2437] },
+    { name: 'London', coordinates: [51.5074, -0.1278] },
+    { name: 'Tokyo', coordinates: [35.6762, 139.6503] },
   ];
 
   return (
-    <div className="flex h-[100vh] w-[80%] items-center ">
-      <div className="flex flex-col gap-8 justify-center overflow-y-auto items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
+    <div className="flex h-[100vh] w-[80%] items-center">
+      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
         <div className="flex flex-col py-6">
           <h1 className="text-4xl font-semibold text-purple-500 mb-6">
             Comparing Population Frequency
           </h1>
 
-          {/* World Map */}
-          <div className="w-full max-w-3xl">
-            <ComposableMap projection="geoMercator" width={800} height={400}>
-              <Geographies geography={geoUrl}>
-                {({ geographies }: { geographies: GeographiesProps["geographies"] }) =>
-                  geographies.map((geo) => (
-                    <Geography
-                      key={geo.id} // Use geo.id for the key
-                      geography={geo}
-                      fill="#fff" // Light green color
-                      stroke="#000"
-                    />
-                  ))
-                }
-              </Geographies>
+          {/* Leaflet Map */}
+          <div className="w-full max-w-3xl h-[300px]">
+            <MapContainer
+              center={[20, 0]} // Initial map center, somewhere in the world
+              zoom={2} // Zoom level
+              style={{ height: '100%', width: '100%' }}
+            >
+              {/* TileLayer to show the map with default OpenStreetMap tiles */}
+              <TileLayer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              />
 
-              {/* Markers for cities */}
-              {data.map(({ name, coordinates, markerOffset }) => (
-                <Marker key={name} coordinates={coordinates}>
-                  <circle r={10} fill="#F53" stroke="#fff" strokeWidth={2} />
-                  <text
-                    textAnchor="middle"
-                    y={markerOffset}
-                    style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
-                  >
+              {/* Markers */}
+              {data.map(({ name, coordinates }) => (
+                <Marker
+                  key={name}
+                  position={[coordinates[0], coordinates[1]]}
+                  icon={dotIcon} // Use the custom dot icon
+                >
+                  <Popup>{name}</Popup>
+
+                  {/* Tooltip to show the name on hover */}
+                  <Tooltip permanent direction="top" offset={[0, -12]}>
                     {name}
-                  </text>
+                  </Tooltip>
                 </Marker>
               ))}
-            </ComposableMap>
+            </MapContainer>
           </div>
 
-          <button onClick={onNext} className="mt-6 px-8 py-3 bg-yellow-400 text-white font-semibold text-xl rounded-full hover:bg-yellow-500 transition duration-200">
+          <button
+            onClick={onNext}
+            className="mt-6 px-8 py-3 bg-yellow-400 text-white font-semibold text-xl rounded-full hover:bg-yellow-500 transition duration-200"
+          >
             Generate a Report
           </button>
         </div>
