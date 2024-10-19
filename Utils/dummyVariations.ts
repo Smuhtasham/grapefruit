@@ -1,5 +1,5 @@
 // Dummy variation analysis data
-const dummyVariationAnalysisData = {
+export const dummyVariationAnalysisData = {
   data: {
     properties: [
       {
