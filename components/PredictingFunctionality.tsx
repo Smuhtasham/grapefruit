@@ -19,7 +19,7 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
   return (
     <div className="flex h-[100vh] w-[80%] items-center ">
       <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
-        <div className="flex flex-col justify-center gap-8 items-center h-screen">
+        <div className="flex flex-col py-6 gap-8 items-center h-screen">
           <div className="font-semibold text-6xl text-[#976CFB] mb-6">
             Predicting Functionality
           </div>
@@ -36,12 +36,14 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
                     onChange={handleSelect}
                     className="w-full py-2 px-4 border text-center border-[#976CFB] text-[#976CFB] rounded-md appearance-none text-lg focus:outline-none"
                   >
-                    <option value="">[Select a GoLabel]</option>
-                    {dummyProteinData.data.functional_properties.go_labels.map((prop) => (
-                      <option key={prop} value={prop}>
-                        {prop}
-                      </option>
-                    ))}
+                    <option value="">[]</option>
+                    {dummyProteinData.data.functional_properties.go_labels.map(
+                      (prop) => (
+                        <option key={prop} value={prop}>
+                          {prop}
+                        </option>
+                      )
+                    )}
                   </select>
                 </div>
                 <div className="flex items-center pointer-events-none">
