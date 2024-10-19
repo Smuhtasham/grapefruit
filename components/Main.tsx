@@ -27,7 +27,7 @@ const Main = () => {
   const [selectedProteinId, setSelectedProteinId] = useState<string>(""); 
   
   // Initialize state for protein sequence using the ProteinData type
-  const [proteinSequence, setProteinSequence] = useState<ProteinData | null>(null);
+  const [proteinSequence, setProteinSequence] = useState<string>("");
 
   // Function to go to the next component
   const handleNextStep = () => {

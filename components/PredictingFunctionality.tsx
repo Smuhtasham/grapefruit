@@ -5,13 +5,11 @@ import { IoMdArrowDropdown } from "react-icons/io";
 interface PropsType {
   onNext: () => void; // Define the type of the onNext prop
   selectedArea: string; // Add the selected therapeutic area as a prop
-  protInferData: { goLabels: string[] }; // Accept GoLabels predicted by ProtInfer
 }
 
 const PredictingFunctionality: React.FC<PropsType> = ({
   onNext,
   selectedArea,
-  protInferData,
 }) => {
   const [selectedGoLabel, setSelectedGoLabel] = useState(""); // State for selected GoLabel
   const [loading, setLoading] = useState(false); // State to manage loading

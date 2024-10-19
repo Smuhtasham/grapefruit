@@ -1,18 +1,10 @@
-"use client";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
-
-interface ProteinData {
-  id: string;
-  name: string;
-  sequence: string;
-  metadata: Record<string, any>;
-  };
 
 interface LoadingVariationsProps {
   onNext: () => void; // Prop to call onNext after loading
   selectedProteinId: string;
-  setProteinSequence: React.Dispatch<React.SetStateAction<ProteinData | null>>;
+  setProteinSequence: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const LoadingVariations: React.FC<LoadingVariationsProps> = ({
@@ -20,58 +12,39 @@ const LoadingVariations: React.FC<LoadingVariationsProps> = ({
   selectedProteinId,
   setProteinSequence,
 }) => {
-  const hasFetched = useRef(false); // Ref to prevent calling onNext twice
+  const hasFetched = useRef(false); // Ref to track if the fetch has occurred
 
   useEffect(() => {
-    const fetchProteinData = async (proteinId: string) => {
+    const fetchProteinSequence = async (proteinId: string) => {
       try {
-        // Fetch protein sequence data from UniProt API
         const response = await fetch(
           `https://rest.uniprot.org/uniprotkb/${proteinId}.fasta`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch protein sequence");
         }
-
         const data = await response.text();
+        setProteinSequence(data); // Set protein sequence after fetching
 
-        // Parse the FASTA format to extract relevant information
-        const lines = data.split("\n");
-        const description = lines[0]; // First line for metadata, e.g., ">sp|P45379|TNNT2_HUMAN etc."
-        const sequence = lines.slice(1).join(""); // The rest of the lines form the sequence
-
-        // Extracting ID and name from description
-        const [_, id, name] = description.split("|");
-        // Format the response in the required structure
-        const proteinData: ProteinData = {
-          id: id || proteinId,
-          name: name || "Unknown Protein",
-          sequence: sequence.replace(/\n/g, ""), 
-          metadata: {}, 
-        };
-
-        // Store the fetched protein data in the state
-        setProteinSequence(proteinData);
-
-        // Ensure that onNext is only called once
-        if (!hasFetched.current) {
-          hasFetched.current = true; // Mark as fetched to prevent duplicate calls
-          // Delay calling onNext by 3 seconds
-          setTimeout(() => {
+        // Wait for 3 seconds before calling onNext
+        setTimeout(() => {
+          if (!hasFetched.current) {
+            hasFetched.current = true; // Mark as fetched
             onNext();
-          }, 3000); // 3 seconds delay
-        }
+          }
+        }, 3000); // 3000 milliseconds = 3 seconds
+
       } catch (error) {
         console.error("Error fetching sequence:", error);
       }
     };
 
     // Call the fetch function when the component loads
-    fetchProteinData(selectedProteinId);
-  }, [selectedProteinId, setProteinSequence, onNext]);
+    fetchProteinSequence(selectedProteinId);
+  }, [selectedProteinId, setProteinSequence, onNext]); // Added dependencies
 
   return (
-    <div className="flex h-[100vh] w-[80%] items-center ">
+    <div className="flex h-[100vh] w-[80%] items-center">
       <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
         <div className="flex flex-col gap-8 items-center justify-center min-h-screen">
           <h1 className="text-6xl font-semibold text-[#976CFB] mb-6">
