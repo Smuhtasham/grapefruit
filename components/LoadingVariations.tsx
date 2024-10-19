@@ -1,17 +1,13 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 
 interface ProteinData {
   id: string;
   name: string;
-  gene: string;
   sequence: string;
   metadata: Record<string, any>;
-  functional_properties?: {
-    go_labels: number[];
   };
-}
 
 interface LoadingVariationsProps {
   onNext: () => void; // Prop to call onNext after loading
@@ -46,18 +42,12 @@ const LoadingVariations: React.FC<LoadingVariationsProps> = ({
 
         // Extracting ID and name from description
         const [_, id, name] = description.split("|");
-        const gene = "CYP3A4"; // This is hardcoded as an example, change it if your data provides the actual gene
-
         // Format the response in the required structure
         const proteinData: ProteinData = {
           id: id || proteinId,
           name: name || "Unknown Protein",
-          gene: gene, 
-          sequence: sequence.replace(/\n/g, ""), // Clean sequence data
-          metadata: {}, // Add any metadata if needed
-          functional_properties: {
-            go_labels: [1, 5, 1234], // Placeholder for Gene Ontology labels, modify as needed
-          },
+          sequence: sequence.replace(/\n/g, ""), 
+          metadata: {}, 
         };
 
         // Store the fetched protein data in the state
@@ -66,7 +56,10 @@ const LoadingVariations: React.FC<LoadingVariationsProps> = ({
         // Ensure that onNext is only called once
         if (!hasFetched.current) {
           hasFetched.current = true; // Mark as fetched to prevent duplicate calls
-          onNext();
+          // Delay calling onNext by 3 seconds
+          setTimeout(() => {
+            onNext();
+          }, 3000); // 3 seconds delay
         }
       } catch (error) {
         console.error("Error fetching sequence:", error);
