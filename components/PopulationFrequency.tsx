@@ -78,5 +78,4 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
     </div>
   );
 };
-
 export default PopulationFrequencyMap;
