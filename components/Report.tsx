@@ -60,7 +60,7 @@ const Report: React.FC = () => {
       <div className="flex h-[100vh] w-[80%] items-center ">
         <div className="flex flex-col w-[80%] mx-auto rounded-xl h-[90vh] overflow-y-auto border-4 border-[#976CFB]">
           <div className="flex flex-col">
-            <h1 className="text-4xl flex mt-6 justify-center font-semibold text-red-500 mb-6">
+            <h1 className="text-4xl flex mt-2 justify-center font-semibold text-red-500 mb-2">
               Report on XYZ Protein
             </h1>
 
