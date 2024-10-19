@@ -12,28 +12,28 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext, selectedArea }) 
   const [proteins, setProteins] = useState<string[]>([]); // State to hold fetched proteins
   const [loading, setLoading] = useState(false); // State to manage loading
 
-  useEffect(() => {
-    const fetchProteins = async () => {
-      // Set loading state
-      setLoading(true);
+  // useEffect(() => {
+  //   const fetchProteins = async () => {
+  //     // Set loading state
+  //     setLoading(true);
 
-      try {
-        // Replace this with your actual API call
-        const response = await fetch(`/api/proteins?therapeutic_area=${selectedArea}`);
-        const data = await response.json();
+  //     try {
+  //       // Replace this with your actual API call
+  //       const response = await fetch(`/api/proteins?therapeutic_area=${selectedArea}`);
+  //       const data = await response.json();
         
-        // Extract proteins from the data (adjust based on your actual response structure)
-        const proteinList = data.proteins || []; // Assume data has a proteins property
-        setProteins(proteinList);
-      } catch (error) {
-        console.error("Error fetching proteins:", error);
-      } finally {
-        setLoading(false); // Reset loading state
-      }
-    };
+  //       // Extract proteins from the data (adjust based on your actual response structure)
+  //       const proteinList = data.proteins || []; // Assume data has a proteins property
+  //       setProteins(proteinList);
+  //     } catch (error) {
+  //       console.error("Error fetching proteins:", error);
+  //     } finally {
+  //       setLoading(false); // Reset loading state
+  //     }
+  //   };
 
-    fetchProteins();
-  }, [selectedArea]);
+  //   fetchProteins();
+  // }, [selectedArea]);
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedProtein(event.target.value);

@@ -1,24 +1,44 @@
 "use client";
+import { areaProteinData } from "@/Utils/areaProteinData";
 import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 interface PropsType {
-  onNext: () => void; // Define the type of the onNext prop
-  onSelectProtein: (protein: string) => void; // New prop to handle protein selection
+  onNext: () => void;
+  setSelectedProtein: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedProteinId: React.Dispatch<React.SetStateAction<string>>;
+  selectedProtein: string;
+  selectedArea: string;
 }
 
-const SelectProtein: React.FC<PropsType> = ({ onNext, onSelectProtein }) => {
-  const [selectedProtein, setSelectedProtein] = useState("");
-  const proteins = ["Protein A", "Protein B", "Protein C", "Protein D"]; // Example data
+const SelectProtein: React.FC<PropsType> = ({
+  onNext,
+  selectedArea,
+  setSelectedProtein,
+  setSelectedProteinId,
+  selectedProtein,
+}) => {
+  // New state for storing protein ID
 
-  const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const protein = event.target.value;
-    setSelectedProtein(protein);
-    onSelectProtein(protein); // Call the function to handle protein selection
+  // Handle selecting a protein
+  const handleProteinSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selected = event.target.value;
+    setSelectedProtein(selected);
+
+    const selectedProteinObj = areaProteinData[selectedArea]?.find(
+      (protein) => protein.name === selected
+    );
+
+    if (selectedProteinObj) {
+      setSelectedProteinId(selectedProteinObj.id); // Set the protein ID state
+    }
   };
 
+  // Get proteins for the selected therapeutic area
+  const proteins = areaProteinData[selectedArea] || [];
+
   return (
-    <div className="flex h-[100vh] w-[80%] items-center ">
+    <div className="flex h-[100vh] w-[80%] items-center">
       <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
         <div className="flex flex-col justify-center gap-8 items-center h-screen">
           {/* Title */}
@@ -26,18 +46,18 @@ const SelectProtein: React.FC<PropsType> = ({ onNext, onSelectProtein }) => {
             Select Protein
           </div>
 
-          {/* Select Box */}
+          {/* Protein Select Box */}
           <div className="flex gap-2">
             <div className="relative w-[300px]">
               <select
                 value={selectedProtein}
-                onChange={handleSelect} // Update selected protein and call onSelectProtein
+                onChange={handleProteinSelect}
                 className="w-full py-3 px-4 border-2 text-center border-[#976CFB] text-[#976CFB] rounded-sm appearance-none text-xl focus:outline-none"
               >
-                <option value="">[ ]</option> {/* Changed ( ) to { } */}
+                <option value="">Select Protein</option>
                 {proteins.map((protein) => (
-                  <option key={protein} value={protein}>
-                    {protein}
+                  <option key={protein.id} value={protein.name}>
+                    {protein.name}
                   </option>
                 ))}
               </select>
@@ -47,8 +67,12 @@ const SelectProtein: React.FC<PropsType> = ({ onNext, onSelectProtein }) => {
             </div>
           </div>
 
+
           {/* Select Button */}
-          <button onClick={onNext} className="bg-[#FFCD6A] text-white font-semibold px-4 mt-6 rounded-full text-2xl">
+          <button
+            onClick={onNext}
+            className="bg-[#FFCD6A] text-white font-semibold px-4 mt-6 rounded-full text-2xl"
+          >
             Select
           </button>
         </div>
