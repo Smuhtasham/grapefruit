@@ -18,20 +18,19 @@ const SelectProtein: React.FC<PropsType> = ({
   setSelectedProteinId,
   selectedProtein,
 }) => {
-  // New state for storing protein ID
+  const [isOpen, setIsOpen] = useState(false);
 
   // Handle selecting a protein
-  const handleProteinSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selected = event.target.value;
-    setSelectedProtein(selected);
-
+  const handleProteinSelect = (proteinName: string) => {
+    setSelectedProtein(proteinName);
     const selectedProteinObj = areaProteinData[selectedArea]?.find(
-      (protein) => protein.name === selected
+      (protein) => protein.name === proteinName
     );
 
     if (selectedProteinObj) {
       setSelectedProteinId(selectedProteinObj.id); // Set the protein ID state
     }
+    setIsOpen(false); // Close the dropdown after selection
   };
 
   // Get proteins for the selected therapeutic area
@@ -46,27 +45,29 @@ const SelectProtein: React.FC<PropsType> = ({
             Select Protein
           </div>
 
-          {/* Protein Select Box */}
-          <div className="flex gap-2">
-            <div className="relative w-[300px]">
-              <select
-                value={selectedProtein}
-                onChange={handleProteinSelect}
-                className="w-full py-3 px-4 border-2 text-center border-[#976CFB] text-[#976CFB] rounded-sm appearance-none text-xl focus:outline-none"
-              >
-                <option value="">Select Protein</option>
+          {/* Custom Protein Select Box */}
+          <div className="relative w-[300px]">
+            <div
+              onClick={() => setIsOpen(!isOpen)}
+              className="w-full py-3 px-4 border-2 text-center border-[#976CFB] text-[#976CFB] rounded-sm cursor-pointer text-xl"
+            >
+              {selectedProtein || "Select Protein"}
+              <IoMdArrowDropdown className="inline-block ml-2" style={{ color: "red", fontSize: "20px" }} />
+            </div>
+            {isOpen && (
+              <div className="absolute left-0 h-[250px] overflow-y-auto right-0 mt-1 bg-white border border-[#976CFB] rounded-md shadow-lg z-10">
                 {proteins.map((protein) => (
-                  <option key={protein.id} value={protein.name}>
+                  <div
+                    key={protein.id}
+                    onClick={() => handleProteinSelect(protein.name)}
+                    className="py-2 px-4 hover:bg-[#976CFB] hover:text-white cursor-pointer"
+                  >
                     {protein.name}
-                  </option>
+                  </div>
                 ))}
-              </select>
-            </div>
-            <div className="flex items-center pointer-events-none">
-              <IoMdArrowDropdown style={{ color: "red", fontSize: "20px" }} />
-            </div>
+              </div>
+            )}
           </div>
-
 
           {/* Select Button */}
           <button

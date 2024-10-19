@@ -35,18 +35,15 @@ const PredictingFunctionality: React.FC<PropsType> = ({
             <>
               <div className="flex gap-2">
                 <div className="relative w-[300px]">
-                  {/* <select
+                  <select
                     value={selectedGoLabel}
                     onChange={handleSelect}
                     className="w-full py-2 px-4 border text-center border-[#976CFB] text-[#976CFB] rounded-md appearance-none text-lg focus:outline-none"
                   >
                     <option value="">[Select a GoLabel]</option>
-                    {protInferData.goLabels.map((goLabel) => (
-                      <option key={goLabel} value={goLabel}>
-                        {goLabel}
-                      </option>
-                    ))}
-                  </select> */}
+                    
+                    
+                  </select>
                 </div>
                 <div className="flex items-center pointer-events-none">
                   <IoMdArrowDropdown style={{ color: "red", fontSize: "20px" }} />
