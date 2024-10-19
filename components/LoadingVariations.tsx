@@ -15,16 +15,20 @@ const LoadingVariations: React.FC<LoadingVariationsProps> = ({
   const hasFetched = useRef(false); // Ref to track if the fetch has occurred
 
   useEffect(() => {
-    const fetchProteinSequence = async (proteinId: string) => {
+    const fetchProteinData = async (proteinId: string) => {
       try {
-        const response = await fetch(
-          `https://rest.uniprot.org/uniprotkb/${proteinId}.fasta`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch protein sequence");
-        }
-        const data = await response.text();
-        setProteinSequence(data); // Set protein sequence after fetching
+        // const response = await fetch(`https://your-api-endpoint/protein/${proteinId}`);
+        // if (!response.ok) {
+        //   throw new Error("Failed to fetch protein data");
+        // }
+        // const data = await response.json(); // Parse JSON response
+
+        // // Extract protein sequence and functional properties from the response
+        // const proteinSequence = data.data.protein.sequence; // Assuming 'sequence' is part of the protein object
+        // const goLabels = data.data.functional_properties?.go_labels || []; // Use optional chaining to avoid errors
+
+        // // Set the protein sequence and data after fetching
+        // setProteinSequence(proteinSequence);
 
         // Wait for 3 seconds before calling onNext
         setTimeout(() => {
@@ -33,14 +37,13 @@ const LoadingVariations: React.FC<LoadingVariationsProps> = ({
             onNext();
           }
         }, 3000); // 3000 milliseconds = 3 seconds
-
       } catch (error) {
-        console.error("Error fetching sequence:", error);
+        console.error("Error fetching protein data:", error);
       }
     };
 
     // Call the fetch function when the component loads
-    fetchProteinSequence(selectedProteinId);
+    fetchProteinData(selectedProteinId);
   }, [selectedProteinId, setProteinSequence, onNext]); // Added dependencies
 
   return (

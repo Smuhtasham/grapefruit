@@ -24,8 +24,8 @@ const Main = () => {
   const [step, setStep] = useState(0); // Track the current step
   const [selectedArea, setSelectedArea] = useState<string>(""); // State for selected therapeutic area
   const [selectedProtein, setSelectedProtein] = useState<string>(""); // State for selected protein
-  const [selectedProteinId, setSelectedProteinId] = useState<string>(""); 
-  
+  const [selectedProteinId, setSelectedProteinId] = useState<string>("");
+
   // Initialize state for protein sequence using the ProteinData type
   const [proteinSequence, setProteinSequence] = useState<string>("");
 

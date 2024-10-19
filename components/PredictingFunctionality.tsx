@@ -1,4 +1,5 @@
 "use client";
+import { dummyProteinData } from "@/Utils/dummyProteinData";
 import React, { useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
@@ -7,10 +8,7 @@ interface PropsType {
   selectedArea: string; // Add the selected therapeutic area as a prop
 }
 
-const PredictingFunctionality: React.FC<PropsType> = ({
-  onNext,
-  selectedArea,
-}) => {
+const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
   const [selectedGoLabel, setSelectedGoLabel] = useState(""); // State for selected GoLabel
   const [loading, setLoading] = useState(false); // State to manage loading
 
@@ -39,12 +37,17 @@ const PredictingFunctionality: React.FC<PropsType> = ({
                     className="w-full py-2 px-4 border text-center border-[#976CFB] text-[#976CFB] rounded-md appearance-none text-lg focus:outline-none"
                   >
                     <option value="">[Select a GoLabel]</option>
-                    
-                    
+                    {dummyProteinData.data.functional_properties.go_labels.map((prop) => (
+                      <option key={prop} value={prop}>
+                        {prop}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div className="flex items-center pointer-events-none">
-                  <IoMdArrowDropdown style={{ color: "red", fontSize: "20px" }} />
+                  <IoMdArrowDropdown
+                    style={{ color: "red", fontSize: "20px" }}
+                  />
                 </div>
               </div>
 
