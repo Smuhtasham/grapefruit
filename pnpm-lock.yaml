@@ -56,7 +56,7 @@ importers:
         version: 1.9.13
       '@types/node':
         specifier: ^20
-        version: 20.16.11
+        version: 20.16.13
       '@types/react':
         specifier: ^18
         version: 18.3.11
@@ -252,8 +252,8 @@ packages:
   '@types/leaflet@1.9.13':
     resolution: {integrity: sha512-wwLL4VKKwYlLmhMQRc/8HT5/8HgkzZyETG0hG3nbsSiHKSdxBWZnHqEkRIOOtpyUks3gbc81dk9WgQMC6bicDw==}
 
-  '@types/node@20.16.11':
-    resolution: {integrity: sha512-y+cTCACu92FyA5fgQSAI8A1H429g7aSK2HsO7K4XYUWc4dY5IUz55JSDIYT6/VsOLfGy8vmvQYC2hfb0iF16Uw==}
+  '@types/node@20.16.13':
+    resolution: {integrity: sha512-GjQ7im10B0labo8ZGXDGROUl9k0BNyDgzfGpb4g/cl+4yYDWVKcozANF4FGr4/p0O/rAkQClM6Wiwkije++1Tg==}
 
   '@types/prop-types@15.7.13':
     resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
@@ -685,8 +685,8 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
-  picocolors@1.1.0:
-    resolution: {integrity: sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==}
+  picocolors@1.1.1:
+    resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
   picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
@@ -1124,7 +1124,7 @@ snapshots:
     dependencies:
       '@types/geojson': 7946.0.14
 
-  '@types/node@20.16.11':
+  '@types/node@20.16.13':
     dependencies:
       undici-types: 6.19.8
 
@@ -1521,7 +1521,7 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
-  picocolors@1.1.0: {}
+  picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
 
@@ -1563,13 +1563,13 @@ snapshots:
   postcss@8.4.31:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       source-map-js: 1.2.1
 
   postcss@8.4.47:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       source-map-js: 1.2.1
 
   prop-types@15.8.1:
@@ -1762,7 +1762,7 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       object-hash: 3.0.0
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       postcss: 8.4.47
       postcss-import: 15.1.0(postcss@8.4.47)
       postcss-js: 4.0.1(postcss@8.4.47)
