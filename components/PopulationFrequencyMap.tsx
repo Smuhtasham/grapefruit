@@ -1,17 +1,14 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
+import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
-import L, { DivIcon } from 'leaflet';
 
-// Define a custom dot icon for the markers
-const dotIcon: DivIcon = L.divIcon({
-  className: 'custom-dot', // Custom class for styling the dot
-  html: '<div class="dot"></div>', // HTML content for the dot
-  iconSize: [12, 12], // Size of the dot
-  iconAnchor: [6, 6], // Center the dot
-  popupAnchor: [0, -6], // Adjust popup position
-});
+// Dynamically import react-leaflet components with SSR disabled
+const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
+const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
+const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
+const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
+const Tooltip = dynamic(() => import('react-leaflet').then(mod => mod.Tooltip), { ssr: false });
 
 interface DataPoint {
   name: string;
@@ -24,10 +21,27 @@ interface PropsType {
 
 const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
   const [isClient, setIsClient] = useState(false);
+  const [dotIcon, setDotIcon] = useState<any>(null);
 
-  // Check if we are running on the client (browser)
   useEffect(() => {
     setIsClient(true);
+
+    // Dynamically import leaflet and create the dot icon after it's available
+    const loadLeaflet = async () => {
+      const L = (await import('leaflet')).default;
+
+      const newDotIcon = L.divIcon({
+        className: 'custom-dot', // Custom class for styling the dot
+        html: '<div class="dot"></div>', // HTML content for the dot
+        iconSize: [12, 12], // Size of the dot
+        iconAnchor: [6, 6], // Center the dot
+        popupAnchor: [0, -6], // Adjust popup position
+      });
+
+      setDotIcon(newDotIcon);
+    };
+
+    loadLeaflet();
   }, []);
 
   const data: DataPoint[] = [
@@ -45,7 +59,7 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
           </h1>
 
           {/* Only render the map on the client side */}
-          {isClient && (
+          {isClient && dotIcon && (
             <div className="w-full max-w-3xl h-[300px]">
               <MapContainer
                 center={[20, 0]} // Initial map center, somewhere in the world
