@@ -5,9 +5,8 @@ import TherapeuticAreas from "./TherapeuticArea";
 import SelectProtein from "./SelectProtein";
 import LoadingVariations from "./LoadingVariations";
 import PredictingFunctionality from "./PredictingFunctionality";
-import PopulationFrequency from "./PopulationFrequency";
 import Report from "./Report";
-import MapPage from "./MapPage";
+import PopulationFrequencyMap from "./PopulationFrequencyMap";
 
 
 const Main = () => {
@@ -53,7 +52,7 @@ const Main = () => {
           onNext={handleNextStep}
         />
       )}
-      {step === 4 && <MapPage onNext={handleNextStep} />}
+      {step === 4 && <PopulationFrequencyMap onNext={handleNextStep} />}
       {step === 5 && <Report />}
     </div>
   );

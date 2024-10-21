@@ -1,5 +1,5 @@
-"use client"
-import React from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Tooltip } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L, { DivIcon } from 'leaflet';
@@ -23,6 +23,13 @@ interface PropsType {
 }
 
 const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  // Check if we are running on the client (browser)
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const data: DataPoint[] = [
     { name: 'Los Angeles', coordinates: [34.0522, -118.2437] },
     { name: 'London', coordinates: [51.5074, -0.1278] },
@@ -37,36 +44,38 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
             Comparing Population Frequency
           </h1>
 
-          {/* Leaflet Map */}
-          <div className="w-full max-w-3xl h-[300px]">
-            <MapContainer
-              center={[20, 0]} // Initial map center, somewhere in the world
-              zoom={2} // Zoom level
-              style={{ height: '100%', width: '100%' }}
-            >
-              {/* TileLayer to show the map with default OpenStreetMap tiles */}
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              />
+          {/* Only render the map on the client side */}
+          {isClient && (
+            <div className="w-full max-w-3xl h-[300px]">
+              <MapContainer
+                center={[20, 0]} // Initial map center, somewhere in the world
+                zoom={2} // Zoom level
+                style={{ height: '100%', width: '100%' }}
+              >
+                {/* TileLayer to show the map with default OpenStreetMap tiles */}
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
 
-              {/* Markers */}
-              {data.map(({ name, coordinates }) => (
-                <Marker
-                  key={name}
-                  position={[coordinates[0], coordinates[1]]}
-                  icon={dotIcon} // Use the custom dot icon
-                >
-                  <Popup>{name}</Popup>
+                {/* Markers */}
+                {data.map(({ name, coordinates }) => (
+                  <Marker
+                    key={name}
+                    position={[coordinates[0], coordinates[1]]}
+                    icon={dotIcon} // Use the custom dot icon
+                  >
+                    <Popup>{name}</Popup>
 
-                  {/* Tooltip to show the name on hover */}
-                  <Tooltip permanent direction="top" offset={[0, -12]}>
-                    {name}
-                  </Tooltip>
-                </Marker>
-              ))}
-            </MapContainer>
-          </div>
+                    {/* Tooltip to show the name on hover */}
+                    <Tooltip permanent direction="top" offset={[0, -12]}>
+                      {name}
+                    </Tooltip>
+                  </Marker>
+                ))}
+              </MapContainer>
+            </div>
+          )}
 
           <button
             onClick={onNext}
@@ -79,4 +88,5 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
     </div>
   );
 };
+
 export default PopulationFrequencyMap;
