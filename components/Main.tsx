@@ -7,6 +7,7 @@ import LoadingVariations from "./LoadingVariations";
 import PredictingFunctionality from "./PredictingFunctionality";
 import PopulationFrequency from "./PopulationFrequency";
 import Report from "./Report";
+import MapPage from "./MapPage";
 
 
 const Main = () => {
@@ -52,8 +53,8 @@ const Main = () => {
           onNext={handleNextStep}
         />
       )}
-      {step === 4 && <PopulationFrequency onNext={handleNextStep} />}
-      {/* {step === 5 && <Report />} */}
+      {step === 4 && <MapPage onNext={handleNextStep} />}
+      {step === 5 && <Report />}
     </div>
   );
 };
