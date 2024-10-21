@@ -52,8 +52,8 @@ const Main = () => {
           onNext={handleNextStep}
         />
       )}
-      {/* {step === 4 && <PopulationFrequency onNext={handleNextStep} />}
-      {step === 5 && <Report />} */}
+      {step === 4 && <PopulationFrequency onNext={handleNextStep} />}
+      {/* {step === 5 && <Report />} */}
     </div>
   );
 };
