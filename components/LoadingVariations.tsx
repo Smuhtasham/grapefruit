@@ -4,13 +4,11 @@ import React, { useEffect, useRef } from "react";
 interface LoadingVariationsProps {
   onNext: () => void; // Prop to call onNext after loading
   selectedProteinId: string;
-  setProteinSequence: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const LoadingVariations: React.FC<LoadingVariationsProps> = ({
   onNext,
   selectedProteinId,
-  setProteinSequence,
 }) => {
   const hasFetched = useRef(false); // Ref to track if the fetch has occurred
 
@@ -44,7 +42,7 @@ const LoadingVariations: React.FC<LoadingVariationsProps> = ({
 
     // Call the fetch function when the component loads
     fetchProteinData(selectedProteinId);
-  }, [selectedProteinId, setProteinSequence, onNext]); // Added dependencies
+  }, [selectedProteinId, onNext]); // Added dependencies
 
   return (
     <div className="flex h-[100vh] w-[80%] items-center">
