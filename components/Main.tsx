@@ -40,13 +40,13 @@ const Main = () => {
           setSelectedProteinId={setSelectedProteinId}
         />
       )}
-      {/* {step === 2 && (
+      {step === 2 && (
         <LoadingVariations
           onNext={handleNextStep}
           selectedProteinId={selectedProteinId}
         />
       )}
-      {step === 3 && (
+      {/* {step === 3 && (
         <PredictingFunctionality
           selectedArea={selectedArea}
           onNext={handleNextStep}
