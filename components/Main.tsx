@@ -31,7 +31,7 @@ const Main = () => {
     <div className="flex flex-col items-center">
       {/* Render components based on the current step */}
       {step === 0 && <TherapeuticAreas onSelectArea={handleAreaSelect} />}
-      {step === 1 && (
+      {/* {step === 1 && (
         <SelectProtein
           setSelectedProtein={setSelectedProtein}
           selectedProtein={selectedProtein}
@@ -53,7 +53,7 @@ const Main = () => {
         />
       )}
       {step === 4 && <PopulationFrequency onNext={handleNextStep} />}
-      {step === 5 && <Report />}
+      {step === 5 && <Report />} */}
     </div>
   );
 };
