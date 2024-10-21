@@ -46,13 +46,13 @@ const Main = () => {
           selectedProteinId={selectedProteinId}
         />
       )}
-      {/* {step === 3 && (
+      {step === 3 && (
         <PredictingFunctionality
           selectedArea={selectedArea}
           onNext={handleNextStep}
         />
       )}
-      {step === 4 && <PopulationFrequency onNext={handleNextStep} />}
+      {/* {step === 4 && <PopulationFrequency onNext={handleNextStep} />}
       {step === 5 && <Report />} */}
     </div>
   );
