@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font-face declarations for Caros font */
+@font-face {
+  font-family: 'Caros';
+  font-style: normal;
+  font-weight: 400; /* Regular weight */
+  src: local('Caros Regular'), url('/fonts/cretype Caros.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Caros';
+  font-style: italic;
+  font-weight: 400; /* Italic weight */
+  src: local('Caros Italic'), url('/fonts/cretype Caros Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Caros';
+  font-style: normal;
+  font-weight: 100; /* Thin weight */
+  src: local('Caros Thin'), url('/fonts/cretype Caros Thin.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Caros';
+  font-style: normal;
+  font-weight: 500; /* Medium weight */
+  src: local('Caros Medium'), url('/fonts/cretype Caros Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Caros';
+  font-style: normal;
+  font-weight: 700; /* Bold weight */
+  src: local('Caros Bold'), url('/fonts/cretype Caros Bold.woff') format('woff');
+}
+
+/* Add other @font-face declarations here as needed */
+
+/* Apply the font globally */
+body {
+  font-family: 'Caros', sans-serif; /* Default font for the website */
+}
+
 @layer utilities {
   .animate-spin-slow {
     animation: spin 3s linear infinite;
