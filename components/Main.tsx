@@ -41,7 +41,7 @@ const Main = () => {
     <>
       <div className="relative background-image flex flex-col">
         <div className="flex justify-between px-6 pt-4">
-          <Image src={"/logo.svg"} width={180} height={150} alt="logo" />{" "}
+          <Image src={"/Logo.svg"} width={180} height={150} alt="logo" />{" "}
           {step != 0 && (
             <RiHome2Fill
               className="cursor-pointer"
