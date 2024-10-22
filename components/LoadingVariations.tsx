@@ -46,7 +46,7 @@ const LoadingVariations: React.FC<LoadingVariationsProps> = ({
 
   return (
     <div className="flex w-[80%] items-center">
-      <div className="flex flex-col gap-8 pt-6 items-center w-[80%] mx-auto rounded-xl h-[80vh]">
+      <div className="flex flex-col gap-8 pt-6 items-center w-[80%] mx-auto rounded-xl ">
           <h1 className="text-6xl font-semibold text-[#112a54] mb-6">
             Loading Variations
           </h1>

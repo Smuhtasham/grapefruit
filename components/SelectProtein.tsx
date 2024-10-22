@@ -38,7 +38,7 @@ const SelectProtein: React.FC<PropsType> = ({
 
   return (
     <div className="flex w-[80%] items-center">
-      <div className="flex flex-col gap-8 py-10 items-center w-[80%] mx-auto h-[80vh]">
+      <div className="flex flex-col gap-8 py-10 justify-center items-center w-[80%] mx-auto">
           {/* Title */}
           <div className="font-semibold text-5xl text-[#112a54] mb-6">
             Select Protein

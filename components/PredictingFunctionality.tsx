@@ -18,7 +18,7 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
 
   return (
     <div className="flex w-[80%] items-center ">
-      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh]">
+      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[50vh]">
         <div className="flex flex-col py-6 gap-8 items-center h-screen">
           <div className="font-semibold text-6xl text-[#112a54] mb-6">
             Predicting Functionality

@@ -31,7 +31,7 @@ const TherapeuticAreas: React.FC<TherapeuticAreasProps> = ({ onSelectArea }) => 
   return (
     <>
       <div className="flex  w-[80%] items-center ">
-        <div className="flex flex-col gap-8 justify-center overflow-y-auto items-center w-[80%] mx-auto rounded-xl h-[80vh]">
+        <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto">
           <div className="font-semibold text-6xl text-[#112a54]">
             Select Therapeutic Area
           </div>

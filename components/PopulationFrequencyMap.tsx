@@ -52,7 +52,7 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
 
   return (
     <div className="flex w-[80%] items-center">
-      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh]">
+      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto">
         <div className="flex flex-col py-6 justify-center items-center">
           <h1 className="text-5xl font-semibold text-[#112a54] mb-6">
             Comparing Population Frequency
