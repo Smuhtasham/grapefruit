@@ -51,7 +51,7 @@ const Report: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="text-3xl font-semibold text-[#112a54]">Loading...</div>;
   }
 
   return (

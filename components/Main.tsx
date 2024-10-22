@@ -28,7 +28,9 @@ const Main = () => {
     setStep((prevStep) => prevStep + 1); // Move to the next step
   };
   const handleback = () => {
-    setStep((prevStep) => prevStep - 1); // Move to the next step
+    if (step == 3) {
+      setStep((prevStep) => prevStep - 2);
+    } else setStep((prevStep) => prevStep - 1); // Move to the next step
   };
   const handlehome = () => {
     setSelectedArea("");
