@@ -93,7 +93,7 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
 
           <button
             onClick={onNext}
-            className="mt-6 justify-center px-4 w-[40%]  bg-[#112a54] text-white font-semibold text-xl rounded-full"
+            className="mt-6 justify-center px-4 w-[60%] py-2  bg-[#112a54] text-white font-semibold text-xl rounded-full"
           >
             Generate a Report
           </button>
