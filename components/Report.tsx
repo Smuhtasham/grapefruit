@@ -25,8 +25,7 @@ const Report: React.FC = () => {
     goFunctions: [
       "Cellular component",
       "Biological process",
-      "Molecular function",
-    ], // GO function terms
+    ],
     graphData: [
       { label: "A", value: 100 },
       { label: "B", value: 80 },
@@ -57,40 +56,40 @@ const Report: React.FC = () => {
 
   return (
     <>
-      <div className="flex h-[100vh] w-[80%] items-center ">
-        <div className="flex flex-col w-[80%] mx-auto rounded-xl h-[90vh] overflow-y-auto border-4 border-[#976CFB]">
-          <div className="flex flex-col">
-            <h1 className="text-4xl flex my-2 justify-center font-semibold text-red-500 mb-">
-              Report on XYZ Protein
-            </h1>
+      <div className="flex w-[80%] items-center ">
+        <div className="flex flex-col w-[80%] mx-auto rounded-xl overflow-y-auto">
+          <h1 className="text-4xl flex justify-center font-semibold text-[#112a54] py-2 ">
+            Report on XYZ Protein
+          </h1>
 
-            <div className="flex justify-center mb-4">
-              <span className="bg-[#4287f5] p-2 w-[10%]">East Asia</span>
-              <span className="bg-[#0095a6] p-2 w-[10%] ">Amish</span>
-              <span className="bg-[#efff40] p-2 w-[10%]">Yoruba</span>
+          <div className="flex flex-col gap-4 border-4 py-4 bg-white border-[#112a54]">
+            <div className="flex justify-center text-center">
+              <span className="bg-[#4287f5] text-semibold border border-[#595959] text-white  w-[20%]">East Asia</span>
+              <span className="bg-[#0095a6] border border-[#595959] text-white  w-[20%] ">Amish</span>
+              <span className="bg-[#efff40] border border-[#595959] text-black  w-[20%]">Yoruba</span>
             </div>
 
-            <h2 className="text-2xl flex justify-center font-semibold text-purple-600">
+            <h2 className="text-2xl flex justify-center font-semibold text-[#966bfa]">
               Population Allele Frequency
             </h2>
 
             <div className="flex justify-evenly">
-              <div className="flex flex-col">
-                <div className="mb-4">
+              <div className="flex flex-col gap-6">
+                <div className="">
                   <Image
-                    src={"/grape.png"}
+                    src={"/loading.svg"}
                     width={100}
                     height={100}
                     alt="Protein Structure"
                   />
                 </div>
-                <div>
-                  <h3 className="text-base text-center mb-2">Any FDA Drugs?</h3>
+                <div className="flex flex-col gap-4">
+                  <h3 className="text-base text-center ">Any FDA Drugs?</h3>
                   <div className="grid grid-cols-2">
                     {reportData.drugs.map((drug: string, index: number) => (
                       <div
                         key={index}
-                        className="bg-[#fc888c] font-semibold rounded-3xl  text-white px-6 py-2 m-1"
+                        className="bg-[#112a54] font-semibold rounded-3xl  text-white px-6 py-2 m-1"
                       >
                         {drug}
                       </div>
@@ -98,9 +97,9 @@ const Report: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col justify-center items-center">
-                <h3 className="text-xl mb-2">GO Functions Tree</h3>
-                <div className="border p-4 mb-4">
+              <div className="flex flex-col gap-2 justify-center items-center">
+                <h3 className="text-xl">GO Functions Tree</h3>
+                <div className="border p-2 ">
                   {reportData.goFunctions.map((func: string, index: number) => (
                     <div key={index}>{func}</div>
                   ))}

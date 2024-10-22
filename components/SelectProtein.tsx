@@ -37,11 +37,10 @@ const SelectProtein: React.FC<PropsType> = ({
   const proteins = areaProteinData[selectedArea] || [];
 
   return (
-    <div className="flex h-[100vh] w-[80%] items-center">
-      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
-        <div className="flex flex-col py-6 gap-8 items-center h-screen">
+    <div className="flex w-[80%] items-center">
+      <div className="flex flex-col gap-8 py-10 items-center w-[80%] mx-auto h-[80vh]">
           {/* Title */}
-          <div className="font-semibold text-6xl text-[#976CFB] mb-6">
+          <div className="font-semibold text-5xl text-[#112a54] mb-6">
             Select Protein
           </div>
 
@@ -50,17 +49,17 @@ const SelectProtein: React.FC<PropsType> = ({
             <div className="relative w-[300px]">
               <div
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full py-3 px-4 border-2 text-center border-[#976CFB] text-[#976CFB] rounded-sm cursor-pointer text-xl"
+                className="w-full py-3 px-4 border-[3px] text-center border-red-500 text-[#112a54] rounded-sm cursor-pointer text-xl"
               >
-                {selectedProtein || "[]"}
+                {selectedProtein || "[ ]"}
               </div>
               {isOpen && (
-                <div className="absolute left-0 h-[250px] overflow-y-auto right-0 mt-1 bg-white border border-[#976CFB] rounded-md shadow-lg z-10">
+                <div className="absolute left-0 h-[250px] overflow-y-auto right-0 mt-1 bg-white border border-[#112a54] rounded-md shadow-lg z-10">
                   {proteins.map((protein) => (
                     <div
                       key={protein.id}
                       onClick={() => handleProteinSelect(protein.name)}
-                      className="py-2 px-4 hover:bg-[#976CFB] hover:text-white cursor-pointer"
+                      className="py-2 px-4 hover:bg-[#112a54] hover:text-white cursor-pointer"
                     >
                       {protein.name}
                     </div>
@@ -69,21 +68,17 @@ const SelectProtein: React.FC<PropsType> = ({
               )}
               
             </div>
-            <div className="flex items-center pointer-events-none">
-                <IoMdArrowDropdown style={{ color: "red", fontSize: "20px" }} />
-              </div>
           </div>
 
           {/* Select Button */}
           <button
             onClick={onNext}
-            className="bg-[#FFCD6A] py-1 text-white font-semibold px-4 mt-6 rounded-full text-2xl"
+            className="bg-[#112a54] text-white font-semibold px-4 mt-4 rounded-full text-2xl"
           >
             Select
           </button>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -17,10 +17,10 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
   };
 
   return (
-    <div className="flex h-[100vh] w-[80%] items-center ">
-      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
+    <div className="flex w-[80%] items-center ">
+      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh]">
         <div className="flex flex-col py-6 gap-8 items-center h-screen">
-          <div className="font-semibold text-6xl text-[#976CFB] mb-6">
+          <div className="font-semibold text-6xl text-[#112a54] mb-6">
             Predicting Functionality
           </div>
 
@@ -34,9 +34,9 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
                   <select
                     value={selectedGoLabel}
                     onChange={handleSelect}
-                    className="w-full py-2 px-4 border text-center border-[#976CFB] text-[#976CFB] rounded-md appearance-none text-lg focus:outline-none"
+                    className="w-full py-2 px-4 border-[3px] text-center border-red-500 text-[#112a54] appearance-none text-lg focus:outline-none"
                   >
-                    <option value="">[]</option>
+                    <option value="">[ ]</option>
                     {dummyProteinData.data.functional_properties.go_labels.map(
                       (prop) => (
                         <option key={prop} value={prop}>
@@ -46,17 +46,12 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
                     )}
                   </select>
                 </div>
-                <div className="flex items-center pointer-events-none">
-                  <IoMdArrowDropdown
-                    style={{ color: "red", fontSize: "20px" }}
-                  />
-                </div>
               </div>
 
               {/* Select Button */}
               <button
                 onClick={onNext}
-                className="bg-[#FFCD6A] text-white font-bold py-2 px-8 mt-6 rounded-full text-lg"
+                className="bg-[#112a54] text-white font-semibold px-4 mt-6 rounded-full text-xl"
               >
                 Select
               </button>

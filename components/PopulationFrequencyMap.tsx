@@ -51,10 +51,10 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
   ];
 
   return (
-    <div className="flex h-[100vh] w-[80%] items-center">
-      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
-        <div className="flex flex-col py-6">
-          <h1 className="text-4xl font-semibold text-purple-500 mb-6">
+    <div className="flex w-[80%] items-center">
+      <div className="flex flex-col gap-8 justify-center items-center w-[80%] mx-auto rounded-xl h-[80vh]">
+        <div className="flex flex-col py-6 justify-center items-center">
+          <h1 className="text-5xl font-semibold text-[#112a54] mb-6">
             Comparing Population Frequency
           </h1>
 
@@ -93,7 +93,7 @@ const PopulationFrequencyMap: React.FC<PropsType> = ({ onNext }) => {
 
           <button
             onClick={onNext}
-            className="mt-6 px-8 py-3 bg-yellow-400 text-white font-semibold text-xl rounded-full hover:bg-yellow-500 transition duration-200"
+            className="mt-6 justify-center px-4 w-[40%]  bg-[#112a54] text-white font-semibold text-xl rounded-full"
           >
             Generate a Report
           </button>

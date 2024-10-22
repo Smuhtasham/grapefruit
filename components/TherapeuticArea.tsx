@@ -30,9 +30,9 @@ const TherapeuticAreas: React.FC<TherapeuticAreasProps> = ({ onSelectArea }) => 
 
   return (
     <>
-      <div className="flex h-[100vh] w-[80%] items-center ">
-        <div className="flex flex-col gap-8 justify-center overflow-y-auto items-center w-[80%] mx-auto rounded-xl h-[80vh] border-4 border-red-600">
-          <div className="font-semibold text-6xl text-[#976CFB]">
+      <div className="flex  w-[80%] items-center ">
+        <div className="flex flex-col gap-8 justify-center overflow-y-auto items-center w-[80%] mx-auto rounded-xl h-[80vh]">
+          <div className="font-semibold text-6xl text-[#112a54]">
             Select Therapeutic Area
           </div>
 
@@ -41,7 +41,7 @@ const TherapeuticAreas: React.FC<TherapeuticAreasProps> = ({ onSelectArea }) => 
             {therapeuticAreas.map((area) => (
               <button
                 key={area}
-                className="bg-[#FD4B51] text-white font-semibold py-3 px-6 rounded-full text-2xl"
+                className="border-4 border-[#FC4C52] hover:bg-[#FC4C52] hover:text-white text-[#112a54] font-semibold py-3 px-6 rounded-full text-2xl"
                 onClick={() => handleAreaSelect(area)} // Handle area selection on click
               >
                 {area}
@@ -50,7 +50,7 @@ const TherapeuticAreas: React.FC<TherapeuticAreasProps> = ({ onSelectArea }) => 
           </div>
 
           {/* General Button */}
-          <button onClick={()=>{handleAreaSelect("General")}} className="bg-[#FFCD6A] text-white py-6 px-44 rounded-full text-2xl font-semibold mt-8">
+          <button onClick={()=>{handleAreaSelect("General")}} className="bg-[#112a54] text-white w-[80%] py-4 rounded-full text-2xl font-semibold mt-8">
             General
           </button>
         </div>

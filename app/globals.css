@@ -47,7 +47,7 @@ body {
 
 @layer utilities {
   .animate-spin-slow {
-    animation: spin 3s linear infinite;
+    animation: spin 2s linear infinite;
   }
 
   @keyframes spin {
@@ -66,4 +66,11 @@ body {
   background-color: rgba(255, 0, 0, 0.505); /* You can change the color here */
   border-radius: 60%;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.37); /* Optional shadow */
+}
+
+.background-image {
+  background-image: url('/bg.jpeg');
+  background-size: contain;
+  background-position: center;
+  min-height: 100vh; /* Full viewport height */
 }
