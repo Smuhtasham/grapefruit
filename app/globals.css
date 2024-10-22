@@ -70,7 +70,7 @@ body {
 
 .background-image {
   background-image: url('/bg.jpeg');
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   min-height: 100vh; /* Full viewport height */
 }

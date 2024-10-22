@@ -52,7 +52,7 @@ const Main = () => {
             />
           )}
         </div>
-        <div className="flex justify-center">
+        <div className="flex h-[80vh] justify-center">
           {/* Render components based on the current step */}
           {step === 0 && <TherapeuticAreas onSelectArea={handleAreaSelect} />}
           {step === 1 && (
