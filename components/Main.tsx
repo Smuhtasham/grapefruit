@@ -10,6 +10,9 @@ import PopulationFrequencyMap from "./PopulationFrequencyMap";
 import Image from "next/image";
 import { RiHome2Fill } from "react-icons/ri";
 import { ImArrowLeft } from "react-icons/im";
+import { FaArrowLeft } from "react-icons/fa";
+import { TbArrowBigUp } from "react-icons/tb";
+import { MdHome } from "react-icons/md";
 
 const Main = () => {
   const [step, setStep] = useState(0); // Track the current step
@@ -45,11 +48,13 @@ const Main = () => {
         <div className="flex justify-between px-6 pt-4">
           <Image src={"/Logo.svg"} width={180} height={150} alt="logo" />{" "}
           {step != 0 && (
-            <RiHome2Fill
-              className="cursor-pointer text-[#112a54]"
-              size={40}
+            <div
+              className="flex flex-col text-[#112a54] items-center cursor-pointer"
               onClick={() => handlehome()}
-            />
+            >
+              <MdHome className="text-[36px]" />
+              <span className="text-[10px] ">Home</span>
+            </div>
           )}
         </div>
         <div className="flex h-[80vh] justify-center">
@@ -79,15 +84,14 @@ const Main = () => {
           {step === 4 && <PopulationFrequencyMap onNext={handleNextStep} />}
           {step === 5 && <Report />}
         </div>
-        <div className="absolute left-5 bottom-5">
-          {step != 0 && (
-            <ImArrowLeft
-              className="cursor-pointer text-[#112a54]"
-              size={40}
-              onClick={() => handleback()}
-            />
-          )}
-        </div>
+        {step != 0 && (
+          <div
+            className="absolute left-5 bottom-5 flex flex-col justify-center items-center text-[#112a54] cursor-pointer"
+            onClick={() => handleback()}
+            title="Back" >
+            <FaArrowLeft className="text-[32px]" />
+          </div>
+        )}
       </div>
     </>
   );
