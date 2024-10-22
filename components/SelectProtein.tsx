@@ -54,7 +54,7 @@ const SelectProtein: React.FC<PropsType> = ({
                 {selectedProtein || "[ ]"}
               </div>
               {isOpen && (
-                <div className="absolute left-0 h-[250px] overflow-y-auto right-0 mt-1 bg-white border border-[#112a54] rounded-md shadow-lg z-10">
+                <div className="absolute left-0 h-[250px] overflow-y-scroll scrollbar-hide  right-0 mt-1 bg-white border border-[#112a54] rounded-md shadow-lg z-10">
                   {proteins.map((protein) => (
                     <div
                       key={protein.id}
