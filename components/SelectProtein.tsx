@@ -73,7 +73,7 @@ const SelectProtein: React.FC<PropsType> = ({
           {/* Select Button */}
           <button
             onClick={onNext}
-            className="bg-[#112a54] text-white font-semibold px-4 mt-4 rounded-full text-2xl"
+            className="bg-[#112a54] text-white font-semibold px-4 mt-4 rounded-full text-xl"
           >
             Select
           </button>

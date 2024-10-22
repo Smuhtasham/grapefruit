@@ -46,7 +46,7 @@ const Main = () => {
           <Image src={"/Logo.svg"} width={180} height={150} alt="logo" />{" "}
           {step != 0 && (
             <RiHome2Fill
-              className="cursor-pointer"
+              className="cursor-pointer text-[#112a54]"
               size={40}
               onClick={() => handlehome()}
             />
@@ -82,7 +82,7 @@ const Main = () => {
         <div className="absolute left-5 bottom-5">
           {step != 0 && (
             <ImArrowLeft
-              className="cursor-pointer"
+              className="cursor-pointer text-[#112a54]"
               size={40}
               onClick={() => handleback()}
             />
