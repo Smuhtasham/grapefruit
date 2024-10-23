@@ -51,7 +51,7 @@ const PredictingFunctionality: React.FC<PropsType> = ({ onNext }) => {
               {/* Select Button */}
               <button
                 onClick={onNext}
-                className="bg-[#112a54] text-white font-semibold px-4 mt-6 rounded-full text-xl"
+                className="bg-[#112a54] text-white  px-6 py-1 mt-6 rounded-full text-xl"
               >
                 Select
               </button>
